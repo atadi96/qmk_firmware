@@ -15,7 +15,9 @@ enum layers {
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 
-/*const*/ uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+#define NUM_LAYERS 6
+
+uint16_t keymaps[NUM_LAYERS][MATRIX_ROWS][MATRIX_COLS] = {
         [0] = LAYOUT_ortho_4x12(KC_DEL, KC_Q, KC_D, KC_R, KC_W, KC_B, KC_J, KC_F, KC_U, KC_P, KC_SCLN, KC_BSLS, KC_BSPC, KC_A, KC_S, KC_H, KC_T, KC_G, KC_Y, KC_N, KC_E, KC_O, KC_I, LT(4,KC_QUOT), SC_LSPO, LCTL_T(KC_Z), KC_X, KC_M, KC_C, KC_V, KC_K, KC_L, KC_COMM, KC_DOT, RCTL_T(KC_SLSH), SC_RSPC, CW_TOGG, KC_LCTL, KC_LALT, KC_LGUI, LT(1,KC_SPC), KC_SPC, KC_ENT, LT(2,KC_ENT), KC_TAB, KC_DOWN, KC_UP, MO(5)),
         [1] = LAYOUT_ortho_4x12(KC_TILD, KC_EXLM, KC_EQL, KC_LT, KC_GT, KC_F2, KC_NO, KC_HOME, KC_END, KC_DLR, KC_CIRC, KC_TRNS, KC_TRNS, KC_AMPR, KC_PIPE, KC_LCBR, KC_RCBR, LALT(KC_F12), KC_F12, KC_LEFT, KC_UP, KC_DOWN, KC_RGHT, KC_ESC, KC_TRNS, KC_PSLS, KC_PAST, KC_PPLS, KC_PMNS, KC_F5, KC_F6, KC_UNDS, LCTL(KC_SPC), LCTL(KC_DOT), KC_AT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LCTL(KC_LEFT), LCTL(KC_RGHT), KC_TRNS, KC_MPLY),
         [2] = LAYOUT_ortho_4x12(KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_BSPC, KC_TRNS, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, KC_TRNS, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY),
@@ -45,7 +47,7 @@ extern rgb_config_t rgb_matrix_config;
 
 #define MY_LED_COUNT 48
 
-uint8_t ledmap[][MY_LED_COUNT][3] = {
+uint8_t ledmap[NUM_LAYERS][MY_LED_COUNT][3] = {
     [1] = { NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, LINDERHOF_GARDEN, {HSV_BLACK},      LINDERHOF_GARDEN, LINDERHOF_GARDEN, NEON_BONEYARD,    NEON_BONEYARD,    {HSV_BLACK},
             {HSV_BLACK},   NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, LINDERHOF_GARDEN, LINDERHOF_GARDEN, LINDERHOF_GARDEN, LINDERHOF_GARDEN, LINDERHOF_GARDEN, LINDERHOF_GARDEN, LINDERHOF_GARDEN,
             {HSV_BLACK},   NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, MELLOW_MELON,     LINDERHOF_GARDEN, NEON_BONEYARD,    LINDERHOF_GARDEN, HABANERO_GOLD,    NEON_BONEYARD,    {HSV_BLACK},
@@ -89,4 +91,45 @@ bool rgb_matrix_indicators_user(void) {
     break;
   }
   return true;
+}
+
+void flip_keycodes(void) {
+    size_t row_bound = (MATRIX_ROWS + 1) / 2;
+    //size_t col_bound = (MATRIX_COLS + 1) / 2;
+    for (size_t layer_index = 0; layer_index < NUM_LAYERS; layer_index++)
+    {
+        for (size_t row_index = 0; row_index < row_bound; row_index++)
+        {
+            for (size_t col_index = 0; col_index < MATRIX_COLS; col_index++)
+            {
+                size_t row_other = MATRIX_ROWS - 1 - row_index;
+                size_t col_other = MATRIX_COLS - 1 - col_index;
+                uint16_t temp = keymaps[layer_index][row_index][col_index];
+                keymaps[layer_index][row_index][col_index] = keymaps[layer_index][row_other][col_other];
+                keymaps[layer_index][row_other][col_other] = temp;
+            }
+        }
+    }
+}
+
+void flip_ledmaps(void) {
+    size_t led_bound = (MY_LED_COUNT + 1) / 2;
+    for (size_t layer_index = 0; layer_index < NUM_LAYERS; layer_index++)
+    {
+        for (size_t led_index = 0; led_index < led_bound; led_index++)
+        {
+            for (size_t hsv_index = 0; hsv_index < 3; hsv_index++)
+            {
+                size_t led_other = MY_LED_COUNT - 1 - led_index;
+                uint8_t temp = ledmap[layer_index][led_index][hsv_index];
+                ledmap[layer_index][led_index][hsv_index] = ledmap[layer_index][led_other][hsv_index];
+                ledmap[layer_index][led_other][hsv_index] = temp;
+            }
+        }
+    }
+}
+
+void keyboard_post_init_user(void) {
+    flip_keycodes();
+    flip_ledmaps();
 }
