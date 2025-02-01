@@ -36,6 +36,20 @@ enum unicode_names {
     OOE_UPPER,
     UUE_LOWER,
     UUE_UPPER,
+    UE_LOWER,
+    UE_UPPER,
+    OE_LOWER,
+    OE_UPPER,
+    AE_LOWER,
+    AE_UPPER,
+    AA_LOWER,
+    AA_UPPER,
+    OO_LOWER,
+    OO_UPPER,
+    UU_LOWER,
+    UU_UPPER,
+    II_LOWER,
+    II_UPPER
 };
 
 const uint32_t PROGMEM unicode_map[] = {
@@ -43,6 +57,20 @@ const uint32_t PROGMEM unicode_map[] = {
     [OOE_UPPER] = 0x150,  // Ő
     [UUE_LOWER] = 0x171, // ű
     [UUE_UPPER] = 0x170, // Ű
+    [UE_LOWER] = 0x00FC, // ü
+    [UE_UPPER] = 0x00DC, // Ü
+    [OE_LOWER] = 0x00F6, // ö
+    [OE_UPPER] = 0x00D6, // Ö
+    [AE_LOWER] = 0x00E9, // é
+    [AE_UPPER] = 0x00C9, // É
+    [AA_LOWER] = 0x00E1, // á
+    [AA_UPPER] = 0x00C1, // Á
+    [OO_LOWER] = 0x00F3, // ó
+    [OO_UPPER] = 0x00D3, // Ó
+    [UU_LOWER] = 0x00FA, // ú
+    [UU_UPPER] = 0x00DA, // Ú
+    [II_LOWER] = 0x00ED, // í
+    [II_UPPER] = 0x00CD // Í
 };
 
 #define NUM_LAYERS 6
@@ -51,7 +79,7 @@ uint16_t keymaps[NUM_LAYERS][MATRIX_ROWS][MATRIX_COLS] = {
         [0] = LAYOUT_ortho_4x12(KC_DEL, KC_Q, KC_D, KC_R, KC_W, KC_B, KC_J, KC_F, KC_U, KC_P, KC_SCLN, KC_BSLS, KC_BSPC, KC_A, KC_S, KC_H, KC_T, KC_G, KC_Y, KC_N, KC_E, KC_O, KC_I, LT(4,KC_QUOT), SC_LSPO, LCTL_T(KC_Z), KC_X, KC_M, KC_C, KC_V, KC_K, KC_L, KC_COMM, KC_DOT, RCTL_T(KC_SLSH), SC_RSPC, LT(5,KC_GRV), MT(MOD_LALT, KC_APPLICATION), LSFT(KC_LALT), KC_LGUI, MO(1), KC_SPC, KC_ENT, MO(2), KC_TAB, KC_DOWN, KC_UP, MO(5)),
         [1] = LAYOUT_ortho_4x12(KC_TILD, KC_EXLM, KC_EQL, KC_LT, KC_GT, KC_F2, KC_NO, KC_HOME, KC_END, KC_DLR, KC_CIRC, KC_TRNS, KC_TRNS, KC_AMPR, KC_PIPE, TD(DANCE_BRACKET_LEFT), TD(DANCE_BRACKET_RIGHT), LALT(KC_F12), KC_F12, KC_LEFT, KC_UP, KC_DOWN, KC_RGHT, KC_ESC, KC_TRNS, KC_PSLS, KC_PAST, KC_PPLS, KC_PMNS, KC_F5, KC_F6, KC_UNDS, LCTL(KC_SPC), LCTL(KC_DOT), KC_AT, KC_TRNS, CW_TOGG, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LCTL(KC_LEFT), LCTL(KC_RGHT), KC_TRNS, KC_MPLY),
         [2] = LAYOUT_ortho_4x12(KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_BSPC, KC_TRNS, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, KC_TRNS, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY),
-        [3] = LAYOUT_ortho_4x12(QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_MOD, RGB_HUI, RGB_HUD, RGB_M_P, KC_NO, KC_NO, BL_TOGG, BL_STEP, BL_BRTG, KC_NO, ST_MACRO_ESCAPED_SMILEY, KC_NO, RGB_TOG, RGB_VAI, RGB_VAD, KC_NO, KC_NO, KC_NO, BL_ON, BL_OFF, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_NO, KC_NO, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO),
+        [3] = LAYOUT_ortho_4x12(QK_BOOT, UC_NEXT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_MOD, RGB_HUI, RGB_HUD, RGB_M_P, KC_NO, KC_NO, BL_TOGG, BL_STEP, BL_BRTG, KC_NO, ST_MACRO_ESCAPED_SMILEY, KC_NO, RGB_TOG, RGB_VAI, RGB_VAD, KC_NO, KC_NO, KC_NO, BL_ON, BL_OFF, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_NO, KC_NO, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO),
         [4] = LAYOUT_ortho_4x12(KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, ST_MACRO_OE, ST_MACRO_UE, ST_MACRO_OO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, UP(UUE_LOWER, UUE_UPPER), ST_MACRO_AE, ST_MACRO_AA, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, ST_MACRO_II, UP(OOE_LOWER, OOE_UPPER), ST_MACRO_UU, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
         [5] = LAYOUT_ortho_4x12(KC_TRNS, KC_EXLM, KC_AT, KC_LCBR, KC_RCBR, KC_PIPE, KC_NO, KC_P7, KC_P8, KC_P9, KC_PSLS, KC_TRNS, KC_TRNS, KC_HASH, KC_DLR, KC_LPRN, KC_RPRN, KC_GRV, KC_NO, KC_P4, KC_P5, KC_P6, KC_PAST, KC_TRNS, KC_TRNS, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, KC_AMPR, KC_P1, KC_P2, KC_P3, KC_PMNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PEQL, KC_P0, KC_PDOT, KC_PPLS, KC_TRNS)
 };
@@ -81,7 +109,11 @@ uint8_t ledmap[NUM_LAYERS][MY_LED_COUNT][3] = {
     [1] = { NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, LINDERHOF_GARDEN, {HSV_BLACK},      LINDERHOF_GARDEN, LINDERHOF_GARDEN, NEON_BONEYARD,    NEON_BONEYARD,    {HSV_BLACK},
             {HSV_BLACK},   NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, LINDERHOF_GARDEN, LINDERHOF_GARDEN, LINDERHOF_GARDEN, LINDERHOF_GARDEN, LINDERHOF_GARDEN, LINDERHOF_GARDEN, LINDERHOF_GARDEN,
             {HSV_BLACK},   NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, NEON_BONEYARD, MELLOW_MELON,     LINDERHOF_GARDEN, NEON_BONEYARD,    LINDERHOF_GARDEN, HABANERO_GOLD,    NEON_BONEYARD,    {HSV_BLACK},
-            {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},      {HSV_BLACK},      {HSV_BLACK},      LINDERHOF_GARDEN, LINDERHOF_GARDEN, {HSV_BLACK},      LINDERHOF_GARDEN }
+            {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},      {HSV_BLACK},      {HSV_BLACK},      LINDERHOF_GARDEN, LINDERHOF_GARDEN, {HSV_BLACK},      LINDERHOF_GARDEN },
+    [3] = { MELLOW_MELON, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK},      {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK},    {HSV_BLACK},    {HSV_BLACK},
+            {HSV_BLACK},   {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK},
+            {HSV_BLACK},   {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK},     {HSV_BLACK}, {HSV_BLACK},    {HSV_BLACK}, {HSV_BLACK},    {HSV_BLACK},    {HSV_BLACK},
+            {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},   {HSV_BLACK},      {HSV_BLACK},      {HSV_BLACK},      {HSV_BLACK}, {HSV_BLACK}, {HSV_BLACK},      {HSV_BLACK} }
 };
 
 void set_layer_color(int layer) {
@@ -109,11 +141,11 @@ void set_layer_color(int layer) {
 bool rgb_matrix_indicators_user(void) {
   if (!rgb_matrix_is_enabled()) { return false; }
   switch (biton32(layer_state)) {
-    //case 0:
-    //  set_layer_color(0);
-    //  break;
     case 1:
       set_layer_color(1);
+      break;
+    case 3:
+      set_layer_color(3);
       break;
    default:
     if (rgb_matrix_get_flags() == LED_FLAG_NONE)
@@ -121,6 +153,25 @@ bool rgb_matrix_indicators_user(void) {
     break;
   }
   return true;
+}
+
+void housekeeping_task_user(void) {
+    if(get_unicode_input_mode() == UNICODE_MODE_WINCOMPOSE) {
+        uint8_t color[3] = LINDERHOF_GARDEN;
+        ledmap[3][47-1][0] = color[0];
+        ledmap[3][47-1][1] = color[1];
+        ledmap[3][47-1][2] = color[2];
+    } else if(get_unicode_input_mode() == UNICODE_MODE_LINUX) {
+        uint8_t color[3] = HABANERO_GOLD;
+        ledmap[3][47-1][0] = color[0];
+        ledmap[3][47-1][1] = color[1];
+        ledmap[3][47-1][2] = color[2];
+    } else {
+        uint8_t color[3] = {HSV_BLACK};
+        ledmap[3][47-1][0] = color[0];
+        ledmap[3][47-1][1] = color[1];
+        ledmap[3][47-1][2] = color[2];
+    }
 }
 
 void flip_keycodes(void) {
@@ -173,107 +224,135 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_OE:
     if (record->event.pressed) {
-        uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
-        if (shift_mods)
-        {
-            unregister_mods(shift_mods);
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_1) SS_TAP(X_KP_4) )); // Ö
-            register_mods(shift_mods);
-        }
-        else
-        {
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_4) SS_TAP(X_KP_6) )); // ö
-            //SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_4) SS_TAP(X_KP_8) )); // ö ???
+        if(get_unicode_input_mode() == UNICODE_MODE_WINCOMPOSE) {
+            uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
+            if (shift_mods)
+            {
+                unregister_mods(shift_mods);
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_1) SS_TAP(X_KP_4) )); // Ö
+                register_mods(shift_mods);
+            }
+            else
+            {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_4) SS_TAP(X_KP_6) )); // ö
+                //SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_4) SS_TAP(X_KP_8) )); // ö ???
+            }
+        } else {
+            register_unicodemap(unicodemap_index(UP(OE_LOWER, OE_UPPER)));
         }
     }
     break;
     case ST_MACRO_UE:
     if (record->event.pressed) {
-        uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
-        if (shift_mods)
-        {
-            unregister_mods(shift_mods);
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_2) SS_TAP(X_KP_0) )); // Ü
-            register_mods(shift_mods);
-        }
-        else
-        {
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_2) SS_TAP(X_KP_9) )); // ü
+        if(get_unicode_input_mode() == UNICODE_MODE_WINCOMPOSE) {
+            uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
+            if (shift_mods)
+            {
+                unregister_mods(shift_mods);
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_2) SS_TAP(X_KP_0) )); // Ü
+                register_mods(shift_mods);
+            }
+            else
+            {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_2) SS_TAP(X_KP_9) )); // ü
+            }
+        } else {
+            register_unicodemap(unicodemap_index(UP(UE_LOWER, UE_UPPER)));
         }
     }
     break;
     case ST_MACRO_OO:
     if (record->event.pressed) {
-        uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
-        if (shift_mods)
-        {
-            unregister_mods(shift_mods);
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_1) SS_TAP(X_KP_1) )); // Ó
-            register_mods(shift_mods);
-        }
-        else
-        {
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_6) SS_TAP(X_KP_2) )); // ó
+        if(get_unicode_input_mode() == UNICODE_MODE_WINCOMPOSE) {
+            uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
+            if (shift_mods)
+            {
+                unregister_mods(shift_mods);
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_1) SS_TAP(X_KP_1) )); // Ó
+                register_mods(shift_mods);
+            }
+            else
+            {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_6) SS_TAP(X_KP_2) )); // ó
+            }
+        } else {
+            register_unicodemap(unicodemap_index(UP(OO_LOWER, OO_UPPER)));
         }
     }
     break;
     case ST_MACRO_UU:
     if (record->event.pressed) {
-        uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
-        if (shift_mods)
-        {
-            unregister_mods(shift_mods);
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_1) SS_TAP(X_KP_8) )); // Ú
-            register_mods(shift_mods);
-        }
-        else
-        {
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_6) SS_TAP(X_KP_3) )); // ú
+        if(get_unicode_input_mode() == UNICODE_MODE_WINCOMPOSE) {
+            uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
+            if (shift_mods)
+            {
+                unregister_mods(shift_mods);
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_1) SS_TAP(X_KP_8) )); // Ú
+                register_mods(shift_mods);
+            }
+            else
+            {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_6) SS_TAP(X_KP_3) )); // ú
+            }
+        } else {
+            register_unicodemap(unicodemap_index(UP(UU_LOWER, UU_UPPER)));
         }
     }
     break;
     case ST_MACRO_AE:
     if (record->event.pressed) {
-        uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
-        if (shift_mods)
-        {
-            unregister_mods(shift_mods);
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_0) SS_TAP(X_KP_1) )); // É
-            register_mods(shift_mods);
-        }
-        else
-        {
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_3) SS_TAP(X_KP_0) )); // é
+        if(get_unicode_input_mode() == UNICODE_MODE_WINCOMPOSE) {
+            uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
+            if (shift_mods)
+            {
+                unregister_mods(shift_mods);
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_0) SS_TAP(X_KP_1) )); // É
+                register_mods(shift_mods);
+            }
+            else
+            {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_3) SS_TAP(X_KP_0) )); // é
+            }
+        } else {
+            register_unicodemap(unicodemap_index(UP(AE_LOWER, AE_UPPER)));
         }
     }
     break;
     case ST_MACRO_AA:
     if (record->event.pressed) {
-        uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
-        if (shift_mods)
-        {
-            unregister_mods(shift_mods);
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_9) SS_TAP(X_KP_3) )); // Á
-            register_mods(shift_mods);
-        }
-        else
-        {
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_6) SS_TAP(X_KP_0) )); // á
+        if(get_unicode_input_mode() == UNICODE_MODE_WINCOMPOSE) {
+            uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
+            if (shift_mods)
+            {
+                unregister_mods(shift_mods);
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_9) SS_TAP(X_KP_3) )); // Á
+                register_mods(shift_mods);
+            }
+            else
+            {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_6) SS_TAP(X_KP_0) )); // á
+            }
+        } else {
+            register_unicodemap(unicodemap_index(UP(AA_LOWER, AA_UPPER)));
         }
     }
     break;
     case ST_MACRO_II:
     if (record->event.pressed) {
-        uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
-        if (shift_mods)
-        {
-            unregister_mods(shift_mods);
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_0) SS_TAP(X_KP_5) )); // Í
-            register_mods(shift_mods);
-        }
-        else
-        {
-            SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_6) SS_TAP(X_KP_1) )); // í
+        if(get_unicode_input_mode() == UNICODE_MODE_WINCOMPOSE) {
+            uint8_t shift_mods = get_mods() & MOD_MASK_SHIFT;
+            if (shift_mods)
+            {
+                unregister_mods(shift_mods);
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_0) SS_TAP(X_KP_5) )); // Í
+                register_mods(shift_mods);
+            }
+            else
+            {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_6) SS_TAP(X_KP_1) )); // í
+            }
+        } else {
+            register_unicodemap(unicodemap_index(UP(II_LOWER, II_UPPER)));
         }
     }
     break;
