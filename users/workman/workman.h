@@ -1,0 +1,72 @@
+#pragma once
+#include "process_tap_dance.h"
+#include QMK_KEYBOARD_H
+
+enum custom_keycodes {
+  ST_MACRO_UE = SAFE_RANGE,
+  ST_MACRO_OE,
+  ST_MACRO_AE,
+  ST_MACRO_AA,
+  ST_MACRO_OO,
+  ST_MACRO_UU,
+  ST_MACRO_II,
+  ST_MACRO_ESCAPED_SMILEY,
+  WORKMAN_SAFE_RANGE,
+};
+
+enum tap_dance_codes {
+  DANCE_WINDOW_SELECT,
+  DANCE_BRACKET_LEFT,
+  DANCE_BRACKET_RIGHT,
+};
+
+enum unicode_names {
+    OOE_LOWER,
+    OOE_UPPER,
+    UUE_LOWER,
+    UUE_UPPER,
+    UE_LOWER,
+    UE_UPPER,
+    OE_LOWER,
+    OE_UPPER,
+    AE_LOWER,
+    AE_UPPER,
+    AA_LOWER,
+    AA_UPPER,
+    OO_LOWER,
+    OO_UPPER,
+    UU_LOWER,
+    UU_UPPER,
+    II_LOWER,
+    II_UPPER
+};
+
+// MoonLander macro keys override
+#define ST_MACRO_0 ST_MACRO_ESCAPED_SMILEY
+
+#define ST_MACRO_1 KC_TRANSPARENT
+#define ST_MACRO_2 KC_TRANSPARENT
+#define ST_MACRO_3 KC_TRANSPARENT
+#define ST_MACRO_4 KC_TRANSPARENT
+#define ST_MACRO_5 KC_TRANSPARENT
+#define ST_MACRO_6 KC_TRANSPARENT
+#define ST_MACRO_7 KC_TRANSPARENT
+#define ST_MACRO_8 KC_TRANSPARENT
+#define ST_MACRO_9 KC_TRANSPARENT
+
+#define ST_MACRO_10 ST_MACRO_OE
+#define ST_MACRO_11 ST_MACRO_UE
+#define ST_MACRO_12 ST_MACRO_OO
+#define ST_MACRO_13 ST_MACRO_AA
+#define ST_MACRO_14 ST_MACRO_AE
+#define ST_MACRO_15 UP(UUE_LOWER, UUE_UPPER)
+#define ST_MACRO_16 ST_MACRO_II
+#define ST_MACRO_17 UP(OOE_LOWER, OOE_UPPER)
+#define ST_MACRO_18 ST_MACRO_UU
+
+#define DANCE_0 DANCE_WINDOW_SELECT
+#define DANCE_1 DANCE_BRACKET_LEFT
+#define DANCE_2 DANCE_BRACKET_RIGHT
+
+tap_dance_action_t tap_dance_actions[3];
+const uint32_t PROGMEM unicode_map[18];
