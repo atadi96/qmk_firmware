@@ -25,6 +25,23 @@ const uint32_t PROGMEM unicode_map[] = {
     [II_UPPER] = 0x00CD // Í
 };
 
+bool process_detected_host_os_user(os_variant_t detected_os) {
+    switch (detected_os) {
+        case OS_WINDOWS:
+            set_unicode_input_mode(UNICODE_MODE_WINCOMPOSE);
+            break;
+        case OS_LINUX:
+            set_unicode_input_mode(UNICODE_MODE_LINUX);
+            break;
+        case OS_UNSURE:
+        case OS_MACOS:
+        case OS_IOS:
+            break;
+    }
+    
+    return true;
+}
+
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   return true;
